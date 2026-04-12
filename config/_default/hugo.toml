@@ -3,7 +3,9 @@ languageCode = "en"
 title = "Yonk-Labs"
 
 enableRobotsTXT = true
-paginate = 10
+
+[pagination]
+  pagerSize = 10
 
 [sitemap]
   changeFreq = "daily"
