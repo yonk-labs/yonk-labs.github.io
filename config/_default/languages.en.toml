@@ -2,6 +2,9 @@ languageName = "English"
 weight = 1
 title = "Yonk-Labs"
 
+[params]
+  logo = "img/logo.jpeg"
+
 [params.author]
   name = "Yonk-Labs"
   headline = "Building tools in the open"

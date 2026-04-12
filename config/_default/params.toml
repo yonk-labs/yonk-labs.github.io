@@ -7,7 +7,7 @@ enableCodeCopy = true
 
 [homepage]
   layout = "hero"
-  homepageImage = ""
+  homepageImage = "img/hero.jpg"
   showRecent = true
   showRecentItems = 5
   showMoreLink = true
