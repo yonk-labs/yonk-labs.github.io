@@ -1,0 +1,121 @@
+{{- $page := .Page -}}
+{{- $captions := $page.Params.gallery | default slice -}}
+
+{{- /* Build a map from filename to caption metadata */ -}}
+{{- $captionMap := dict -}}
+{{- range $captions -}}
+  {{- $captionMap = merge $captionMap (dict .file .) -}}
+{{- end -}}
+
+<div class="gallery-grid">
+{{- range $page.Resources.Match "*.jpg" -}}
+  {{- $name := path.Base .Name -}}
+  {{- $meta := index $captionMap $name -}}
+  {{- $title := "" -}}
+  {{- $caption := "" -}}
+  {{- with $meta -}}
+    {{- $title = .title | default "" -}}
+    {{- $caption = .caption | default "" -}}
+  {{- end -}}
+  {{- if not $title -}}
+    {{- $title = replace (replaceRE "\\.[^.]+$" "" $name) "_" " " | replaceRE "([a-z])([A-Z])" "$1 $2" | title -}}
+  {{- end -}}
+  <figure>
+    <a href="{{ .RelPermalink }}" target="_blank" rel="noopener">
+      <img src="{{ .RelPermalink }}" alt="{{ $title }}" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>{{ $title }}</strong>
+      {{- with $caption }}<br>{{ . }}{{ end -}}
+    </figcaption>
+  </figure>
+{{- end }}
+{{- range $page.Resources.Match "*.png" -}}
+  {{- $name := path.Base .Name -}}
+  {{- $meta := index $captionMap $name -}}
+  {{- $title := "" -}}
+  {{- $caption := "" -}}
+  {{- with $meta -}}
+    {{- $title = .title | default "" -}}
+    {{- $caption = .caption | default "" -}}
+  {{- end -}}
+  {{- if not $title -}}
+    {{- $title = replace (replaceRE "\\.[^.]+$" "" $name) "_" " " | replaceRE "([a-z])([A-Z])" "$1 $2" | title -}}
+  {{- end -}}
+  <figure>
+    <a href="{{ .RelPermalink }}" target="_blank" rel="noopener">
+      <img src="{{ .RelPermalink }}" alt="{{ $title }}" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>{{ $title }}</strong>
+      {{- with $caption }}<br>{{ . }}{{ end -}}
+    </figcaption>
+  </figure>
+{{- end }}
+{{- range $page.Resources.Match "*.webp" -}}
+  {{- $name := path.Base .Name -}}
+  {{- $meta := index $captionMap $name -}}
+  {{- $title := "" -}}
+  {{- $caption := "" -}}
+  {{- with $meta -}}
+    {{- $title = .title | default "" -}}
+    {{- $caption = .caption | default "" -}}
+  {{- end -}}
+  {{- if not $title -}}
+    {{- $title = replace (replaceRE "\\.[^.]+$" "" $name) "_" " " | replaceRE "([a-z])([A-Z])" "$1 $2" | title -}}
+  {{- end -}}
+  <figure>
+    <a href="{{ .RelPermalink }}" target="_blank" rel="noopener">
+      <img src="{{ .RelPermalink }}" alt="{{ $title }}" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>{{ $title }}</strong>
+      {{- with $caption }}<br>{{ . }}{{ end -}}
+    </figcaption>
+  </figure>
+{{- end }}
+</div>
+
+<style>
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.gallery-grid figure {
+  margin: 0;
+  padding: 0.75rem;
+  background: rgba(128, 128, 128, 0.08);
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gallery-grid figure:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+.gallery-grid figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+.gallery-grid figcaption strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  opacity: 1;
+}
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
