@@ -1,0 +1,29 @@
+[[main]]
+  name = "Blog"
+  pageRef = "blog"
+  weight = 10
+
+[[main]]
+  name = "Videos"
+  pageRef = "videos"
+  weight = 20
+
+[[main]]
+  name = "Podcasts"
+  pageRef = "podcasts"
+  weight = 30
+
+[[main]]
+  name = "Samples"
+  pageRef = "samples"
+  weight = 40
+
+[[main]]
+  name = "Projects"
+  pageRef = "projects"
+  weight = 50
+
+[[main]]
+  name = "About"
+  pageRef = "about"
+  weight = 60

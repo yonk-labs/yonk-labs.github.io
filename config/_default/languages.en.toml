@@ -1,0 +1,11 @@
+languageName = "English"
+weight = 1
+title = "Yonk-Labs"
+
+[params.author]
+  name = "Yonk-Labs"
+  headline = "Building tools in the open"
+  bio = "Open source tools and experiments from the Yonk-Labs team."
+  links = [
+    { github = "https://github.com/yonk-labs" },
+  ]

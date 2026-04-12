@@ -1,0 +1,13 @@
+baseURL = "https://yonk-labs.github.io/"
+languageCode = "en"
+title = "Yonk-Labs"
+
+enableRobotsTXT = true
+paginate = 10
+
+[sitemap]
+  changeFreq = "daily"
+  priority = 0.5
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
