@@ -70,6 +70,15 @@ Three reasons, because I list things in threes:
 2. The blog, videos, and podcast sections are for the long-form rants. I'd rather write these down than lose the argument to whoever yelled back at me on Twitter.
 3. It's an excuse to dogfood my own "small static site, big ideas" belief. No JavaScript framework du jour. No analytics trying to follow you around. Just markdown, Hugo, and GitHub Pages.
 
-If you want to argue, build something together, or just tell me I'm wrong about MongoDB, find me on [GitHub](https://github.com/yonk-labs) or at any database conference where there's good coffee and someone willing to listen.
+## Find me
+
+- **GitHub (Yonk-Labs org):** [github.com/yonk-labs](https://github.com/yonk-labs) — where the projects on this site live
+- **GitHub (personal):** [github.com/TheYonk](https://github.com/TheYonk) — the weirder personal stuff, including the wrestling sim
+- **LinkedIn:** [linkedin.com/in/myonk](https://www.linkedin.com/in/myonk/)
+- **Open Source Business Community:** [opensourcebusiness.community](https://opensourcebusiness.community) — the public resource I founded for running open source companies without setting them on fire
+- **HOSS Talks FOSS:** [percona.podbean.com](https://percona.podbean.com/)
+- **Hacking Open Source Business Podcast:** [podcast.hosbp.com](https://podcast.hosbp.com/)
+
+If you want to argue, build something together, or just tell me I'm wrong about MongoDB, any of the above will reach me. Or find me at any database conference where there's good coffee and someone willing to listen.
 
 Welcome to Yonk-Labs. Pull up a chair.
