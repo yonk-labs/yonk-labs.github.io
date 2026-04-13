@@ -1,6 +1,6 @@
 ---
 title: "llm-top"
-date: 2026-04-12
+date: 2026-03-24
 draft: false
 tags: ["python", "llm", "monitoring", "cli", "nvidia"]
 summary: "A top-like live terminal dashboard for monitoring LLM inference servers on NVIDIA DGX Spark."

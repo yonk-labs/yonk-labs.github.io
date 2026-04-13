@@ -1,6 +1,6 @@
 ---
 title: "RoboMonkey MCP (yonk-robo-codemonkey)"
-date: 2026-04-12
+date: 2026-03-27
 draft: false
 tags: ["python", "mcp", "postgres", "pgvector", "coding-agents", "rag"]
 summary: "Local-first MCP server that indexes code and docs into Postgres + pgvector for hybrid retrieval by LLM coding clients."

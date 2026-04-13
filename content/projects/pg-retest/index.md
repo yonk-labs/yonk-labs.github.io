@@ -1,6 +1,6 @@
 ---
 title: "pg-retest"
-date: 2026-04-12
+date: 2026-03-20
 draft: false
 tags: ["rust", "postgresql", "workload-replay", "benchmarking", "migration-testing"]
 summary: "Capture, replay, and compare PostgreSQL workloads. Validate config changes, migrations, and capacity plans with confidence."

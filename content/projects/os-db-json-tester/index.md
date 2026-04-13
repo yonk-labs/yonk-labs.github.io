@@ -1,6 +1,6 @@
 ---
 title: "os-db-json-tester"
-date: 2026-04-12
+date: 2026-03-30
 draft: false
 tags: ["python", "postgresql", "mysql", "mongodb", "benchmarking", "json"]
 summary: "Scripts to test and benchmark JSON functionality across MySQL, PostgreSQL, and MongoDB — and generate simulated load."
