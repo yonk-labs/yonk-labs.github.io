@@ -1,5 +1,5 @@
 ---
-title: "Vector+BM25 Is the Floor. Graph Is the Multiplier."
+title: "GraphRag In Postgres: Vector+BM25 Is the Floor. Graph Is the Multiplier."
 date: 2026-04-14
 draft: false
 tags: ["postgres", "rag", "graphrag", "pgvector", "apache-age", "ai"]
@@ -10,9 +10,9 @@ summary: "Part 1 of 3. Users ask three shapes of questions and only one of them 
 
 So you built a RAG pipeline. You stacked pgvector on top of Postgres, wired it to an embedding model, hooked it to your favorite LLM, and shipped it to a handful of real users. For a week you felt like a wizard. Then somebody asked, "who voted with Sotomayor on First Amendment cases last term?" and your shiny system coughed up three dissent paragraphs that don't actually name a single justice. Your users stopped asking clever questions and started asking, politely, whether the whole thing is broken.
 
-I've built this exact broken thing. More than once. (I'm not proud of it, but pretending otherwise would be a bad look for someone who's been working on databases for 20+ years.) The reason it keeps happening isn't that vector search is bad. Vector search is great at what it does. The problem is that your users don't ask one kind of question. They ask three. Two of those shapes live entirely in the text, and vector plus BM25 can handle them cold. The third needs a graph, but only sometimes, and only if you apply it with a little bit of care.
+I've built this exact broken thing. More than once. (I'm not proud of it, but pretending otherwise would be a bad look). The reason it keeps happening isn't that vector search is bad, vector search is great at what it does. The problem is that your users don't ask one kind of question. They ask three. Two of those shapes live entirely in the text, and vector plus BM25 can handle them cold. The third needs a graph, but only sometimes, and only if you apply it with a little bit of care.
 
-That last bit is the part I want you to walk away with, because I had to learn it the hard way. Graph retrieval isn't a replacement for vector search. It isn't even a peer. It's a multiplier you bolt onto the side of a vector+BM25 pipeline, and if you stick it in the wrong place, it actively makes your answers worse.
+That last bit is the part I want you to walk away with, because I had to learn it the hard way. Graph retrieval isn't a replacement for vector search. It isn't even a peer. It's a multiplier you add onto the side of a vector+BM25 pipeline, and if you stick it in the wrong place, it actively makes your answers worse.
 
 ## Three kinds of questions, and the 80/20 that comes with them
 
