@@ -1,5 +1,5 @@
 ---
-title: "Getting Apache AGE and pgvector Running on Postgres 16"
+title: "GraphRag In Postgres: Getting Apache AGE and pgvector Running on Postgres 16"
 date: 2026-04-15
 draft: false
 tags: ["postgres", "rag", "graphrag", "pgvector", "apache-age", "docker", "tutorial"]
