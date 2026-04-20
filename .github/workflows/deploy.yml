@@ -53,6 +53,11 @@ jobs:
         with:
           go-version: "stable"
 
+      - name: Release scheduled posts whose date has arrived
+        env:
+          TZ: America/New_York
+        run: ./scripts/release-scheduled-posts.sh
+
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache

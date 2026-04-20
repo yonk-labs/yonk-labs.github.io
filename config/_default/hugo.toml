@@ -4,6 +4,12 @@ title = "Yonk-Labs"
 
 enableRobotsTXT = true
 
+# Render future-dated pages so their single-page URLs resolve before release.
+# Posts use `build.list: never` in front matter to stay off lists / RSS /
+# sitemap until the release-gate script flips them on their release day.
+# See scripts/release-scheduled-posts.sh.
+buildFuture = true
+
 [pagination]
   pagerSize = 10
 
