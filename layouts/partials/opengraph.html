@@ -1,0 +1,97 @@
+{{/*
+  Custom OpenGraph + Twitter Card emitter.
+
+  Replaces Hugo's _internal/opengraph.html and _internal/twitter_cards.html so
+  we can serve a 1200x630 (1.91:1) Fill derivative of each post's feature
+  image. LinkedIn only renders the large-hero preview card when og:image is
+  close to 1.91:1 with explicit dimensions — the source feature images here
+  are 1344x768 / 1376x768 (~1.75:1), which triggered the small thumbnail
+  layout. Hugo's internal templates ship the original image with no
+  dimensions, so appending tags from extend-head-uncached can't fix the URL.
+*/}}
+{{- $ISO8601 := "2006-01-02T15:04:05-0700" -}}
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+{{- with site.Language.Lang }}
+<meta property="og:locale" content="{{ . }}">
+{{- end }}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+
+{{- if .IsPage }}
+  {{- if not .PublishDate.IsZero }}
+<meta property="article:published_time" content="{{ .PublishDate.Format $ISO8601 }}">
+  {{- end }}
+  {{- if not .Lastmod.IsZero }}
+<meta property="article:modified_time" content="{{ .Lastmod.Format $ISO8601 }}">
+  {{- end }}
+  {{- with site.Title }}
+<meta property="article:section" content="{{ . }}">
+  {{- end }}
+  {{- with .Params.tags }}
+    {{- range . }}
+<meta property="article:tag" content="{{ . }}">
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{/* Resolve the source feature image: front matter images param > bundled
+     feature/cover/thumbnail resource > site defaultSocialImage. */}}
+{{- $ogImage := "" -}}
+{{- $ogWidth := 0 -}}
+{{- $ogHeight := 0 -}}
+{{- $ogType := "" -}}
+{{- $ogAlt := .Title -}}
+
+{{- with .Params.images -}}
+  {{- $ogImage = index . 0 | absURL -}}
+{{- else -}}
+  {{- $featured := "" -}}
+  {{- if .IsPage -}}
+    {{- $images := .Resources.ByType "image" -}}
+    {{- $featured = $images.GetMatch "*feature*" -}}
+    {{- if not $featured }}{{ $featured = $images.GetMatch "*cover*" }}{{ end -}}
+    {{- if not $featured }}{{ $featured = $images.GetMatch "*thumbnail*" }}{{ end -}}
+  {{- end -}}
+  {{- with $featured -}}
+    {{- $og := .Fill "1200x630 Center" -}}
+    {{- $ogImage = $og.Permalink -}}
+    {{- $ogWidth = $og.Width -}}
+    {{- $ogHeight = $og.Height -}}
+    {{- $ogType = $og.MediaType.Type -}}
+  {{- else -}}
+    {{- with site.Params.defaultSocialImage -}}
+      {{- $ogImage = . | absURL -}}
+    {{- end -}}
+    {{- with site.Params.images -}}
+      {{- if not $ogImage -}}{{ $ogImage = index . 0 | absURL }}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with $ogImage }}
+<meta property="og:image" content="{{ . }}">
+<meta property="og:image:secure_url" content="{{ . }}">
+<meta property="og:image:alt" content="{{ $ogAlt }}">
+{{- end }}
+{{- if $ogWidth }}
+<meta property="og:image:width" content="{{ $ogWidth }}">
+<meta property="og:image:height" content="{{ $ogHeight }}">
+{{- end }}
+{{- with $ogType }}
+<meta property="og:image:type" content="{{ . }}">
+{{- end }}
+
+{{/* Twitter Cards — summary_large_image when we have an image. */}}
+<meta name="twitter:card" content="{{ if $ogImage }}summary_large_image{{ else }}summary{{ end }}">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+{{- with $ogImage }}
+<meta name="twitter:image" content="{{ . }}">
+<meta name="twitter:image:alt" content="{{ $ogAlt }}">
+{{- end }}
+{{- with site.Params.Author.twitter }}
+<meta name="twitter:site" content="@{{ . }}">
+<meta name="twitter:creator" content="@{{ . }}">
+{{- end }}
