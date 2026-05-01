@@ -15,7 +15,7 @@ Here's the thing. Schema is solved. pgloader does the bulk load and handles the 
 
 Cutover blows up because of your queries. Backticks. `LIMIT 5, 10` offsets. `IFNULL`. `IF(cond, a, b)`. `UNIX_TIMESTAMP`. All legal MySQL syntax, none of it valid Postgres, all of it buried across 200-plus files in your application code. You'll find maybe half with grep. The rest you discover at 2 AM on cutover day, with your VP of Engineering on the Zoom, watching the rollback decision tree light up in real time.
 
-I built a subcommand in `pg-retest` for exactly this problem. Takes a MySQL slow query log, parses the actual queries your app ran, pushes them through a regex-based transform pipeline that handles the common MySQL-to-Postgres divergences, and replays the transformed queries against a real Postgres target. Every failure in replay is one you don't find in production.
+I built a subcommand in [`pg-retest`](https://github.com/pg-retest/pg-retest) for exactly this problem. Takes a MySQL slow query log, parses the actual queries your app ran, pushes them through a regex-based transform pipeline that handles the common MySQL-to-Postgres divergences, and replays the transformed queries against a real Postgres target. Every failure in replay is one you don't find in production.
 
 This post walks the whole loop: MySQL in Docker, a workload that looks like a real MySQL app, capture the slow log, transform, replay against Postgres, count the damage. Every command ran on an actual setup and produced the output you see.
 
