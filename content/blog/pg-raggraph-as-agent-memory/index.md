@@ -79,7 +79,7 @@ These are real gaps. I'm not going to pretend pg-raggraph is "ready for agent me
 
 ## What I'm actually doing about this
 
-The honest version: I'm watching how my own coding agent uses [`pgrg devmem`](https://github.com/yonk-labs/pg_raggraph) right now. It's a CLI wrapper around pg-raggraph that ingests a developer's notes and queries them as a knowledge base. Not full agent memory yet — it's a manual ingest from the developer side, not automatic from the agent side. But it's how I've been validating the access pattern.
+The honest version: I'm watching how my own coding agent uses [`pgrg devmem`](https://github.com/yonk-labs/pg-raggraph) right now. It's a CLI wrapper around pg-raggraph that ingests a developer's notes and queries them as a knowledge base. Not full agent memory yet — it's a manual ingest from the developer side, not automatic from the agent side. But it's how I've been validating the access pattern.
 
 What I'm seeing: the agent doesn't ask the same question twice in a session, but it asks the same question across sessions all the time. The memory layer needs to span sessions, span agents, and span machines. A local file isn't the right fit; a postgres database the agent connects to over the network is. (And if you have multiple agents in a fleet, all writing to the same memory store, the namespace isolation suddenly matters a lot.)
 

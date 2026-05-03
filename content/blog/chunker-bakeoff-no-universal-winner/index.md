@@ -22,7 +22,7 @@ There is no best chunker. There is no best embedder. There is no universal defau
 
 Here's what changed my mind.
 
-I've been working on [pg-raggraph](https://github.com/yonk-labs/pg_raggraph), a postgres-native GraphRAG library. It pairs naturally with [chunkshop](https://github.com/yonk-labs/chunkshop), which is a sibling library specifically for the chunking + embedding + extraction step of an ingest pipeline. Chunkshop is the dedicated tool. It ships seven chunker strategies. Its README has a "production sweet spot" recommendation: hierarchy chunker plus int8-quantized bge-small. Tuned across multiple bake-off corpora. I trusted it.
+I've been working on [pg-raggraph](https://github.com/yonk-labs/pg-raggraph), a postgres-native GraphRAG library. It pairs naturally with [chunkshop](https://github.com/yonk-labs/chunkshop), which is a sibling library specifically for the chunking + embedding + extraction step of an ingest pipeline. Chunkshop is the dedicated tool. It ships seven chunker strategies. Its README has a "production sweet spot" recommendation: hierarchy chunker plus int8-quantized bge-small. Tuned across multiple bake-off corpora. I trusted it.
 
 So when I integrated chunkshop into pg-raggraph, the first thing I did was wire `chunk_strategy="chunkshop:hierarchy"` as the recommended path. Wrote a cookbook. Ran the example. Counted the entities and relationships in the resulting graph.
 
@@ -125,6 +125,6 @@ Second. Don't trust me. Don't trust the chunkshop README. Don't trust the bge-ba
 
 Third. The data engineering layer is where most RAG performance is hiding. We talk about model selection. We talk about retrieval modes. We talk about reranking. The chunker is upstream of all of that, and it controls what's even possible to retrieve. A wrong chunker upstream means no amount of clever downstream tuning saves you. Get the foundation right first.
 
-The bakeoff configs from this post live in the [pg-raggraph repo](https://github.com/yonk-labs/pg_raggraph) under `docs/cookbook/samples/chunkshop-bakeoff-*.yaml`. Three configs, three corpora, three different shapes of data. Drop them on a copy of your corpus and you'll have your own answer in 15 minutes.
+The bakeoff configs from this post live in the [pg-raggraph repo](https://github.com/yonk-labs/pg-raggraph) under `docs/cookbook/samples/chunkshop-bakeoff-*.yaml`. Three configs, three corpora, three different shapes of data. Drop them on a copy of your corpus and you'll have your own answer in 15 minutes.
 
 Now the real question — is your current chunker the one that wins your bakeoff, or the one you picked because somebody on the internet said it was the production sweet spot?

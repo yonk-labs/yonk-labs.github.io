@@ -12,7 +12,7 @@ Hot take to start: most teams I talk to about GraphRAG are picking the wrong fig
 
 It usually doesn't.
 
-I've been building [pg-raggraph](https://github.com/yonk-labs/pg_raggraph) for the last several months. It's a GraphRAG library that runs entirely in PostgreSQL — pgvector for the vector side, adjacency tables and recursive CTEs for the graph side, BM25 via tsvector for keyword search, all in one ACID-compliant database. No graph extension required. No second backup strategy. No data sync between two systems.
+I've been building [pg-raggraph](https://github.com/yonk-labs/pg-raggraph) for the last several months. It's a GraphRAG library that runs entirely in PostgreSQL — pgvector for the vector side, adjacency tables and recursive CTEs for the graph side, BM25 via tsvector for keyword search, all in one ACID-compliant database. No graph extension required. No second backup strategy. No data sync between two systems.
 
 This isn't an academic exercise. The library has been benchmarked across six corpora at this point — postgres docs, NTSB aviation reports, sales call notes, MuSiQue multi-hop QA, the Python 3.x docs across versions, and PubMed HRT abstracts. The numbers are competitive with or better than the GraphRAG-on-graph-DB stacks for the workloads where graph augmentation actually pays off, and they don't blow up when somebody hands you an AWS RDS instance and says "deploy this here." (Try doing that with Apache AGE. I'll wait.)
 
@@ -57,7 +57,7 @@ Three things that are noticeably different from Microsoft's design once you star
 
 The benchmark on this corpus: graph mode delivered +18.9 percentage points of accuracy over naive vector retrieval. That's not a noisy 2-3 point lift; that's a meaningful difference. The shape of the data — entity-dense, multi-doc-chained, every doc has 5+ shared entities with neighbors — is exactly where graph augmentation pays off.
 
-If your team has a knowledge base that looks like this (and most engineering orgs do — Notion + GitHub + Confluence + on-call runbooks), pg-raggraph is straightforwardly worth running. The cookbook walkthrough at [`docs/cookbook/sales-crm-ingestion.md`](https://github.com/yonk-labs/pg_raggraph/blob/main/docs/cookbook/sales-crm-ingestion.md) is the closest example, even though the example uses sales call notes — the pipeline is the same shape.
+If your team has a knowledge base that looks like this (and most engineering orgs do — Notion + GitHub + Confluence + on-call runbooks), pg-raggraph is straightforwardly worth running. The cookbook walkthrough at [`docs/cookbook/sales-crm-ingestion.md`](https://github.com/yonk-labs/pg-raggraph/blob/main/docs/cookbook/sales-crm-ingestion.md) is the closest example, even though the example uses sales call notes — the pipeline is the same shape.
 
 **Use case two: versioned documentation.** Postgres docs across major versions. Python docs across versions. Cloud SDK docs across SDK versions. Anywhere the answer to "how do I do X" depends on which version the user is on.
 
