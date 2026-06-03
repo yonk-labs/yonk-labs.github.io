@@ -218,7 +218,7 @@ Run: git log --all --pretty=format:"%h %s" | head -200
 Then summarize the top three themes in the commit messages.
 ```
 
-What happens under the hood: the Bash output is around 8,000 tokens. The hook installed at `~/.claude/hooks/stele-large-output.sh` fires, nudging the agent toward stashing. The agent calls `stele_stash_tool_result(tool_name="Bash", raw_output=<the 8k tokens>)`. Stele stores the exact output, generates a one-paragraph summary (via the `lede` extractive summarizer — no LLM, just classical NLP), and returns:
+What happens under the hood: the Bash output is around 8,000 tokens. The hook installed at `~/.claude/hooks/stele-large-output.sh` fires, nudging the agent toward stashing. The agent calls `stele_stash_tool_result(tool_name="Bash", raw_output=<the 8k tokens>)`. Stele stores the exact output, generates a one-paragraph summary (via [the `lede` extractive summarizer](https://github.com/yonk-labs/lede) — no LLM, just classical NLP), and returns:
 
 ```json
 {

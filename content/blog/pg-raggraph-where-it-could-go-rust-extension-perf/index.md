@@ -10,7 +10,7 @@ build:
 
 There's a category of bug that's particularly painful — the one where you publish a benchmark, somebody points out the number looks wrong, and the wrongness turns out to be in code *you* wrote, not in the system you were measuring. I had one of those a few weeks ago.
 
-The setup: pg-raggraph's bake-off against Apache AGE on the SCOTUS legal-QA corpus. Pre-extracted entities and relationships from the same JSON cache, fed into both engines, both writing to their own schemas. AGE finished in 50 seconds. pg-raggraph took 14 minutes.
+The setup: [pg-raggraph](https://github.com/yonk-labs/pg-raggraph)'s bake-off against Apache AGE on the SCOTUS legal-QA corpus. Pre-extracted entities and relationships from the same JSON cache, fed into both engines, both writing to their own schemas. AGE finished in 50 seconds. pg-raggraph took 14 minutes.
 
 That's a 17× gap on the storage-only path. I had to either explain it or fix it. (Both, actually. My version of explaining it was "I was an idiot.") The whole thing is a microcosm of where pg-raggraph is performance-wise and where it's going next, so let's walk through it.
 

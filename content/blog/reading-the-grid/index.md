@@ -8,7 +8,7 @@ build:
   list: never
 ---
 
-So I built a spreadsheet with about 150 rows of benchmark results, opened it up, and my honest first reaction was: nobody is going to read this. It's a wall of codenames (`hybrid_raw_hnsw`, `nb0_k=10`, `A:sentence_aware+facts`) and numbers. It looks like the output of a robot having a stroke.
+So I built a [spreadsheet with about 150 rows of benchmark results](https://github.com/yonk-labs/stele/blob/main/testing/results/MEGA-GRID.md) (the [raw CSV](https://github.com/yonk-labs/stele/blob/main/testing/results/MEGA-GRID.csv) is right there too), opened it up, and my honest first reaction was: nobody is going to read this. It's a wall of codenames (`hybrid_raw_hnsw`, `nb0_k=10`, `A:sentence_aware+facts`) and numbers. It looks like the output of a robot having a stroke.
 
 But there's a real story buried in there, and once you know the three things each row is telling you, it reads like a map. Let me hand you the map. (If you're a junior dev who just got told to "look at the RAG numbers," this one's for you.)
 

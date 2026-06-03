@@ -8,7 +8,7 @@ build:
   list: never
 ---
 
-There are about a hundred ways to chop a document into chunks. Chunkshop ships seven of them. This is the part where I tell you what each one is good at, where it falls over, and the corpus shape that breaks the leaderboard between them. Treat this as a field guide — not a recommendation. You don't pick a chunker from a blog post. You bakeoff, and the bakeoff tells you. (We covered that in [the tutorial post](../chunkshop-tutorial-sales-crm-bakeoff-to-langgraph/). Read that first if you skipped it.)
+There are about a hundred ways to chop a document into chunks. [Chunkshop](https://github.com/yonk-labs/chunkshop) ships seven of them. This is the part where I tell you what each one is good at, where it falls over, and the corpus shape that breaks the leaderboard between them. Treat this as a field guide — not a recommendation. You don't pick a chunker from a blog post. You bakeoff, and the bakeoff tells you. (We covered that in [the tutorial post](../chunkshop-tutorial-sales-crm-bakeoff-to-langgraph/). Read that first if you skipped it.)
 
 But — and this is the unspoken rule — you can't intelligently bakeoff if you don't understand what each chunker is *trying* to do. So: seven walkthroughs, with opinions.
 
@@ -96,7 +96,7 @@ There's also a non-trivial speed cost. The default boundary model (MiniLM-L6-v2 
 
 **Where it wins.** Long chunks where the vector's signal is diluted by filler. A 1,500-word section where the actual meaning is in two sentences and the rest is procedural prose. Summarize at embed time; you keep the raw text for return, but the vector represents what the chunk is *about*, not every adjective it happens to contain.
 
-The callable mode is where this gets interesting. You can wire chunkshop's `summarizers.lede` (a sibling library that ships fast extractive summarization) so every chunk gets a 2-3 sentence lede summary at ingest time. Or you can wire any Python callable that takes text and returns text — your own LLM-based summarizer, a fine-tuned T5, whatever.
+The callable mode is where this gets interesting. You can wire chunkshop's `summarizers.lede` ([a sibling library](https://github.com/yonk-labs/lede) that ships fast extractive summarization) so every chunk gets a 2-3 sentence lede summary at ingest time. Or you can wire any Python callable that takes text and returns text — your own LLM-based summarizer, a fine-tuned T5, whatever.
 
 **Where it falls over.** Any corpus where the chunks are already short and dense. Sales notes. Support tickets. Single-paragraph FAQ entries. The summary will either equal the raw text (waste of compute) or worse, drop genuinely-useful detail. Don't summarize what's already a summary.
 

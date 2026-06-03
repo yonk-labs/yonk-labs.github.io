@@ -49,7 +49,7 @@ Both layers share the `embedding` column dimension and the `(doc_id, seq_num)` p
 The summary itself can come from three places:
 
 - **External** — a column on the source row already contains a summary. Your CMS has an `abstract` field; wire that column as the summary source. Zero compute, zero LLM.
-- **Callable** — point chunkshop at a Python module and entry point that takes text and returns text. The recommended pairing is the `lede` library (extractive summarization, zero dependencies, ~1ms per chunk). You can wire any LLM-based summarizer the same way.
+- **Callable** — point chunkshop at a Python module and entry point that takes text and returns text. The recommended pairing is [the `lede` library](https://github.com/yonk-labs/lede) (extractive summarization, zero dependencies, ~1ms per chunk). You can wire any LLM-based summarizer the same way.
 - **Passthrough** — the chunk text *is* the summary. Useful as a baseline; rarely the right answer in production.
 
 The thing I want you to take away: separating "what gets embedded" from "what gets stored" is one of the highest-impact choices in this space, and almost no ingest library lets you make it cleanly. Chunkshop does.

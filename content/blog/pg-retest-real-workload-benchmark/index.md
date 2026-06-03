@@ -11,7 +11,7 @@ build:
 
 HammerDB runs TPROC-C. pgbench runs TPC-B. Sysbench runs whatever sysbench runs. All three are useful for comparing databases against each other under standardized workloads, which is exactly what they were built for. None of them tells you what happens to *your* application when *your* database sees 10x traffic on Black Friday. If you've ever shipped a capacity plan based on pgbench numbers and then watched production melt anyway, you already know this.
 
-pg-retest flips the benchmark question around. Instead of asking "how fast is this database at an industry-standard workload," it asks "how much of *my real workload* can this database handle before it falls over, and where exactly does it break?" You capture once. You replay at 1x, 5x, 10x, 50x. You find the knee. You make a decision.
+[pg-retest](https://github.com/pg-retest/pg-retest) flips the benchmark question around. Instead of asking "how fast is this database at an industry-standard workload," it asks "how much of *my real workload* can this database handle before it falls over, and where exactly does it break?" You capture once. You replay at 1x, 5x, 10x, 50x. You find the knee. You make a decision.
 
 This post builds a capacity benchmark from real captured workload, sweeps the throughput curve, and deliberately drives a PostgreSQL target into the ground to show you what saturation looks like and how to measure it without getting garbage data. Every number in every table below came from running this on an actual PG 16 container. If you see different numbers on your hardware, that's the point, you're supposed to measure yours.
 

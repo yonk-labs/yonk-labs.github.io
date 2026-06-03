@@ -38,7 +38,7 @@ Here is the deal: I did not just compare memory recall against itself. I pointed
 
 Memory recall, best case, scored 0.10. The document-RAG lanes scored 0.65 to 0.73, and just feeding the model the whole conversation hit 0.83. Same questions. Same grader. The memory store got beaten by 6x to 8x by the unglamorous approach we already had running.
 
-So what does that actually mean? It means a memory store full of raw conversation fragments is a bad retriever, and I have the receipts. The answer to a LoCoMo question is usually stitched together across several turns. Document RAG hands the model big, contiguous, neighbor-expanded chunks, so the context hangs together. My memory store handed it a shredded pile of one-liners and asked it to reassemble the thought. The model did about as well as you would, which is to say badly.
+So what does that actually mean? It means a memory store full of raw conversation fragments is a bad retriever, and I have [the receipts](https://github.com/yonk-labs/stele/blob/main/testing/results/MEGA-GRID.md). The answer to a LoCoMo question is usually stitched together across several turns. Document RAG hands the model big, contiguous, neighbor-expanded chunks, so the context hangs together. My memory store handed it a shredded pile of one-liners and asked it to reassemble the thought. The model did about as well as you would, which is to say badly.
 
 Now the honesty tax, because I am not going to pretend my benchmark was a masterpiece. That result indicts how I filled the memory store as much as anything. I dumped sentence fragments in and recalled them. A real memory pipeline extracts and consolidates facts instead of shredding the source. But that is the whole lesson, not a loophole: "memory" is not "RAG with extra steps." Use it as a drop-in retriever and you will build a worse retriever, and a benchmark will tell you so in an afternoon.
 
@@ -60,7 +60,7 @@ Two findings, stated plainly.
 
 ## How you can try it (and how not to fool yourself)
 
-You need Postgres for the semantic part. The rest of the memory layer runs on plain SQLite.
+You need Postgres for the semantic part. The rest of the memory layer ([stele](https://github.com/yonk-labs/stele)) runs on plain SQLite.
 
 Turning on hybrid memory recall is one config key:
 

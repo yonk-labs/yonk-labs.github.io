@@ -8,7 +8,7 @@ build:
   list: never
 ---
 
-Every time I post about pg-raggraph somebody asks "why didn't you use Apache AGE?" The honest answer is that AGE and pg-raggraph aren't competing for the same job. They're competing the way a sports car and a pickup truck compete — they look like vehicles to somebody who doesn't drive much, but if you're trying to haul lumber, the question of "which one is faster around the track" is the wrong frame.
+Every time I post about [pg-raggraph](https://github.com/yonk-labs/pg-raggraph) somebody asks "why didn't you use Apache AGE?" The honest answer is that AGE and pg-raggraph aren't competing for the same job. They're competing the way a sports car and a pickup truck compete — they look like vehicles to somebody who doesn't drive much, but if you're trying to haul lumber, the question of "which one is faster around the track" is the wrong frame.
 
 I'm going to lay out where AGE wins, where pg-raggraph wins, and where you almost certainly don't need either of them. And I'm going to do it without trash-talking AGE, because AGE is a real piece of engineering and the people working on it are smart. The problem is people mis-deploy it for jobs it isn't shaped for.
 

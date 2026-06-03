@@ -16,7 +16,7 @@ The long version is more fun, because to get to that number I had to be wrong in
 
 Embedding models charge you by the amount of text you push through them — compute time if you run them yourself, actual dollars if you call OpenAI. So here's the idea: feed them less. Not fewer chunks. Less text *per* chunk. "The cat sat on the mat" becomes "cat sat mat." Talk like a caveman, embed the caveman, pay for fewer tokens.
 
-chunkshop already had the parts. There's a little reducer called `caveman` that drops stopwords and punctuation, and every chunk carries two text fields: the raw `original_content` you keep for display and grep, and the `embedded_content` that actually goes to the model. So you caveman the thing you embed and leave the real text untouched for humans. No data loss. Just a smaller payload hitting the GPU.
+[chunkshop](https://github.com/yonk-labs/chunkshop) already had the parts. There's a little reducer called `caveman` that drops stopwords and punctuation, and every chunk carries two text fields: the raw `original_content` you keep for display and grep, and the `embedded_content` that actually goes to the model. So you caveman the thing you embed and leave the real text untouched for humans. No data loss. Just a smaller payload hitting the GPU.
 
 On legal documents, caveman shrank the embedded text by about 18% of its characters and a third of its words. That turned into roughly 27% faster embedding on my box. The cost side was never in question. The question was always: what does it do to search?
 

@@ -28,7 +28,7 @@ Three theories. Three measurements. Three corpses. The actual fixes were unglamo
 
 ## Then I scaled it up and watched my conclusions die
 
-Once the fixes were in, I ran the real thing: stele's retrieval against three domains, conversational memory (LoCoMo), multi-hop factoid (HotpotQA), and biomedical QA (CovidQA), plus the obvious competitors, Mem0 and Letta. Same answerer, same judge, same corpora. Apples to apples for once.
+Once the fixes were in, I ran the real thing: [stele](https://github.com/yonk-labs/stele)'s retrieval against three domains, conversational memory (LoCoMo), multi-hop factoid (HotpotQA), and biomedical QA (CovidQA), plus the obvious competitors, Mem0 and Letta. Same answerer, same judge, same corpora. Apples to apples for once.
 
 First pass: 40 questions per corpus. I got a clean story. Facts-packing (summarize the retrieved chunks into a digest, append date-resolved facts) looked like a temporal specialist. It won on LoCoMo. I wrote it up. Felt good.
 
@@ -71,7 +71,7 @@ If you're benchmarking agent memory right now (and a lot of people are, loudly),
 
 Your small-N run is lying to you. Forty questions feels like a benchmark and behaves like a coin flip; the margins that look like findings are noise, and the one that flips when you 6× the sample size was never real. Cross-vendor numbers are almost never apples-to-apples (different embedder, different judge, different retrieval-k, different answer model), and the moment I held those constant, half the "X beats Y" headlines collapsed into "X and Y use different embedders." And a correctness bug in your harness will cosplay as a brilliant result until you check the bytes.
 
-We have the receipts now: every lane, every corpus, accuracy and tokens and latency, with the parametric floor measured and the wrong turns documented. That's the part I actually care about. Not that stele won (it did, on the axes that matter and reproducibly). That we can *show our work*, including the work where we were wrong.
+We have [the receipts](https://github.com/yonk-labs/stele/blob/main/testing/results/MEGA-GRID.md) now: every lane, every corpus, accuracy and tokens and latency, with the parametric floor measured and the wrong turns documented. That's the part I actually care about. Not that stele won (it did, on the axes that matter and reproducibly). That we can *show our work*, including the work where we were wrong.
 
 So here's my challenge to you, and I mean it: before you trust your own RAG numbers, run the no-context baseline, 6× your sample, and diff the bytes that reach the model. If your conclusions survive all three, *now* you've got something. If they don't, better you find out than your users.
 
