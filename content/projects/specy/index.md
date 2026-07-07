@@ -41,3 +41,4 @@ Default temperament is assertive — it pushes back on vague answers rather than
 - [GitHub Repository](https://github.com/yonk-labs/specy)
 - Related: [yonk-ai-skills](https://github.com/yonk-labs/yonk-ai-skills) (the full-depth method skills specy prefers when installed)
 - Related: [abe](https://github.com/yonk-labs/abe) (used for `--brutal` mode debates)
+- License: MIT
